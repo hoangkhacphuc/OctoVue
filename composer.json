@@ -1,0 +1,29 @@
+{
+  "name": "hoangkhacphuc/octovue-theme",
+  "type": "october-theme",
+  "description": "Ultra-modern Headless SPA Theme powered by October CMS and Vue 3",
+  "keywords": [
+    "octobercms",
+    "theme",
+    "vue",
+    "spa",
+    "vite",
+    "tailwind"
+  ],
+  "homepage": "https://github.com/hoangkhacphuc/OctoVue",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "HoangKhacPhuc",
+      "email": "hoangkhacphuc.dev@gmail.com"
+    }
+  ],
+  "require": {
+    "composer/installers": "~1.0"
+  },
+  "config": {
+    "allow-plugins": {
+      "composer/installers": true
+    }
+  }
+}
