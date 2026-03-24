@@ -1,0 +1,28 @@
+title = "API Blog"
+url = "/api/v1/blog"
+layout = ""
+
+[collection blog]
+handle = "Octovue\Blog"
+recordsPerPage = 5
+pageNumber = "{{ :page }}"
+==
+<?php
+function onStart() {
+    header('Content-Type: application/json');
+}
+?>
+==
+{% set keyword = get('search')|trim %}
+{% set posts = blog.searchWhere(keyword, ['title', 'content']).paginate(5) %}
+
+{% for record in posts %}
+    {% set post = {
+        'title': record.title,
+        'excerpt': record.excerpt,
+        'slug': record.slug,
+        'image': record.featured_image ? record.featured_image.path : null
+    } %}
+{% endfor %}
+
+{{ posts|json_encode(64)|raw }}

@@ -1,0 +1,18 @@
+title = "API Init"
+url = "/api/v1/init"
+layout = ""
+==
+<?php
+function onStart() {
+    header('Content-Type: application/json');
+}
+?>
+==
+{{ {
+    "message": "Hello from Theme API Page via Twig JSON",
+    "variables": {
+        "theme": "dracula",
+        "engine": "vue-router (via fetch)"
+    },
+    "version": "1.0.0"
+}|json_encode|raw }}

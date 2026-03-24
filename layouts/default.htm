@@ -1,0 +1,85 @@
+##
+description = "Default Vue Layout"
+==
+<?php
+function onStart() {
+    $this['csrfToken'] = Session::token();
+}
+?>
+==
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrfToken }}">
+    
+    {% if this.theme.responsive %}
+        {% set viewportWidth = this.theme.size == 'custom' ? 'width=' ~ this.theme.width ~ ', height=' ~ this.theme.height : this.theme.size %}
+        <meta name="viewport" content="{{ viewportWidth }}, initial-scale={{ this.theme.rev_scale|default('1.0') }}">
+    {% else %}
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% endif %}
+    
+    {% set seoTitle = this.page.title %}
+    {% if this.theme.enable_title %}
+        {% if this.theme.title_position == 'prefix' %}
+            {% set seoTitle = this.theme.title ~ ' ' ~ seoTitle %}
+        {% else %}
+            {% set seoTitle = seoTitle ~ ' ' ~ this.theme.title %}
+        {% endif %}
+    {% endif %}
+    <title>{{ seoTitle|default('OctoVue') }}</title>
+    
+    {% if this.theme.enable_og_tags %}
+        <meta property="og:title" content="{{ seoTitle|default('OctoVue') }}">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="{{ url_current() }}">
+        {% if this.theme.og_sitename %}
+            <meta property="og:site_name" content="{{ this.theme.og_sitename }}">
+        {% endif %}
+        {% if this.theme.og_fb_appid %}
+            <meta property="fb:app_id" content="{{ this.theme.og_fb_appid }}">
+        {% endif %}
+    {% endif %}
+    
+    <link rel="icon" href="{{ this.theme.favicon ? this.theme.favicon.path : 'assets/images/octovue.svg'|theme }}">
+    <link rel="apple-touch-icon" href="{{ this.theme.appicon ? this.theme.appicon.path : 'assets/images/octovue.svg'|theme }}">
+    
+    {% if this.theme.enable_canonical_url %}
+        <link rel="canonical" href="{{ url_current() }}">
+    {% endif %}
+    
+    {% if this.theme.other_tags %}
+        {{ this.theme.other_tags|raw }}
+    {% endif %}
+
+    <link rel="stylesheet" href="{{ 'assets/dist/css/main.css'|theme }}">
+    {% styles %}
+
+    <script>
+    window.ThemeConfig = {
+        website_name: "{{ this.theme.website_name|e('js') }}",
+        logo_dark: "{{ this.theme.logo_dark ? this.theme.logo_dark.path|e('js') : 'assets/images/octovue.svg'|theme|e('js') }}",
+        logo_white: "{{ this.theme.logo_white ? this.theme.logo_white.path|e('js') : 'assets/images/octovue.svg'|theme|e('js') }}",
+        address: "{{ this.theme.address|e('js') }}",
+        phone: "{{ this.theme.phone|e('js') }}",
+        email: "{{ this.theme.email|e('js') }}",
+        copyright: "{{ this.theme.copyright|e('js') }}",
+        seo_base_title: "{{ this.theme.title|e('js') }}",
+        seo_enable_title: {{ this.theme.enable_title ? 'true' : 'false' }},
+        seo_title_position: "{{ this.theme.title_position|e('js') }}",
+        csrf_token: "{{ csrfToken }}"
+    };
+    </script>
+</head>
+<body>
+    {% page %}
+    
+    <!-- Octobercms core scripts (for oc.request) -->
+    {% framework %}
+    {% scripts %}
+    
+    <!-- Vite JS Output -->
+    <script type="module" src="{{ 'assets/dist/js/main.js'|theme }}"></script>
+</body>
+</html>

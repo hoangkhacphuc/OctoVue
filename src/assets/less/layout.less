@@ -1,0 +1,176 @@
+// Global Layout
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Courier Prime', 'Consolas', 'Courier New', monospace;
+    background-color: @bg;
+    color: @fg;
+    font-size: 1rem;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: @fg;
+    
+    &:hover {
+        color: @cyan;
+    }
+}
+
+.dracula-layout {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: @current-line;
+    border-right: 1px solid @comment;
+    display: flex;
+    flex-direction: column;
+
+    .sidebar-header {
+        padding: 10px 15px;
+        font-size: 0.85rem;
+        color: @comment;
+        letter-spacing: 1px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        display: flex;
+        align-items: center;
+        
+        .sidebar-logo {
+            max-width: 150px;
+            max-height: 40px;
+            object-fit: contain;
+        }
+        
+        .sidebar-title {
+            font-size: 1.2rem;
+            color: @fg;
+            font-weight: bold;
+            letter-spacing: 0;
+            white-space: nowrap;
+            
+            &.has-logo {
+                margin-left: 12px;
+            }
+        }
+    }
+    
+    .sidebar-menu {
+        li {
+            cursor: pointer;
+            
+            a {
+                display: block;
+                padding: 6px 20px;
+                color: @comment;
+                transition: background-color 0.1s, color 0.1s;
+                border-left: 3px solid transparent;
+                
+                &::before {
+                    content: '📄 ';
+                    opacity: 0.7;
+                }
+                
+                &:hover {
+                    background-color: @current-line;
+                    color: @fg;
+                    &::before { opacity: 1; }
+                }
+                
+                &.router-link-active,
+                &.router-link-exact-active {
+                    background-color: @current-line;
+                    color: @cyan;
+                    border-left-color: @pink;
+                    font-weight: bold;
+                    
+                    &::before {
+                        content: '📝 ';
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.editor-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: @bg;
+    
+    .editor-tabs {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: @current-line;
+        border-bottom: 1px solid @comment;
+        
+        .tab {
+            padding: 10px 20px;
+            border-right: 1px solid @comment;
+            cursor: pointer;
+            color: @comment;
+
+            &.active {
+                background-color: @bg;
+                color: @fg;
+                border-top: 2px solid @pink;
+            }
+            
+            &::before {
+                content: '📄 ';
+            }
+        }
+    }
+    
+    .editor-content {
+        flex: 1;
+        padding: 20px;
+        overflow-y: auto;
+        display: flex;
+        position: relative;
+    }
+}
+
+// Code Layout Styles inside editor
+.line-numbers {
+    width: 40px;
+    text-align: right;
+    color: @comment;
+    padding-right: 15px;
+    user-select: none;
+    border-right: 1px solid @current-line;
+    margin-right: 15px;
+    
+    .line {
+        line-height: 1.5;
+    }
+}
+
+.code-area {
+    flex: 1;
+    line-height: 1.5;
+    
+    .comment { color: @comment; }
+    .keyword { color: @pink; }
+    .variable { color: @fg; }
+    .operator { color: @pink; }
+    .string { color: @yellow; }
+    .function { color: @green; }
+    .number { color: @purple; }
+    
+    div, span, pre {
+        font-family: inherit;
+    }
+}

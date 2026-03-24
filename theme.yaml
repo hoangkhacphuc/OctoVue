@@ -1,0 +1,232 @@
+name: OctoVue
+description: Open source theme created with Vite and Vue for OctoberCMS.
+author: HoangKhacPhuc
+homepage: https://github.com/HoangKhacPhuc
+code: octovue
+
+form:
+    tabs:
+        fields:
+            # --- General Tab ---
+            logo_dark:
+                label: Logo Dark
+                type: fileupload
+                mode: image
+                span: left
+                tab: General
+            logo_white:
+                label: Logo White
+                type: fileupload
+                mode: image
+                span: right
+                tab: General
+            website_name:
+                label: Website Name
+                type: text
+                tab: General
+
+            # --- Contact Tab ---
+            address:
+                label: Address
+                type: textarea
+                size: small
+                span: full
+                tab: Contact
+            phone:
+                label: Phone
+                type: text
+                span: left
+                tab: Contact
+            email:
+                label: Email
+                type: text
+                span: right
+                tab: Contact
+
+            # --- Footer Tab ---
+            copyright:
+                label: Copyright
+                type: text
+                tab: Footer
+
+            # --- Seo Settings Tab ---
+            section_title:
+                label: 'Page Title Settings'
+                span: full
+                type: section
+                tab: Seo Settings
+            title:
+                label: 'Base SEO Title'
+                span: auto
+                placeholder: 'Sitename |'
+                trigger:
+                    action: show
+                    field: enable_title
+                    condition: checked
+                type: text
+                comment: 'The base title to append/prepend to pages.'
+                tab: Seo Settings
+            title_position:
+                label: 'Title Appearance'
+                options:
+                    prefix: 'Prefix (at start)'
+                    suffix: 'Suffix (at end)'
+                span: auto
+                trigger:
+                    action: show
+                    field: enable_title
+                    condition: checked
+                type: radio
+                comment: 'Select where the base title should appear.'
+                tab: Seo Settings
+            enable_title:
+                label: 'Use site name in title'
+                span: auto
+                type: switch
+                comment: 'Turn on to modify the page title structure.'
+                tab: Seo Settings
+            section_open:
+                label: 'Open Graph (Social Media)'
+                span: full
+                type: section
+                tab: Seo Settings
+            og_sitename:
+                label: 'OG Site Name'
+                span: auto
+                trigger:
+                    action: show
+                    field: enable_og_tags
+                    condition: checked
+                type: text
+                comment: 'The name of your site displayed on Facebook/Twitter.'
+                tab: Seo Settings
+            og_fb_appid:
+                label: 'Facebook App Id'
+                span: auto
+                trigger:
+                    action: show
+                    field: enable_og_tags
+                    condition: checked
+                type: text
+                comment: 'Enter your Facebook App ID for deeper insights.'
+                tab: Seo Settings
+            enable_og_tags:
+                label: 'Enable Open Graph tags'
+                span: auto
+                type: switch
+                tab: Seo Settings
+            section_icons:
+                label: 'Website Icons'
+                span: full
+                type: section
+                tab: Seo Settings
+            favicon:
+                label: Favicon
+                mode: image
+                imageWidth: '64'
+                imageHeight: '64'
+                fileTypes: 'ico,png'
+                useCaption: true
+                thumbOptions:
+                    mode: crop
+                    extension: auto
+                span: auto
+                type: fileupload
+                commentAbove: 'Use a 16x16, 32x32 or 64x64 pixels png image'
+                tab: Seo Settings
+            appicon:
+                label: 'App Icon'
+                mode: image
+                imageWidth: '192'
+                imageHeight: '192'
+                fileTypes: 'png,jpg'
+                useCaption: true
+                thumbOptions:
+                    mode: crop
+                    extension: auto
+                span: auto
+                type: fileupload
+                commentAbove: 'Homescreen icon for use in mobile devices'
+                tab: Seo Settings
+            sectionmain:
+                label: 'Other Settings'
+                span: full
+                type: section
+                tab: Seo Settings
+            other_tags:
+                label: 'Custom Meta Tags'
+                size: large
+                language: twig
+                span: full
+                type: codeeditor
+                commentAbove: 'Insert tags that you want to insert in all pages'
+                tab: Seo Settings
+            enable_canonical_url:
+                label: 'Enable Canonical URLs'
+                span: auto
+                type: switch
+                comment: 'Prevent duplicate content penalties from Google.'
+                tab: Seo Settings
+            responsive:
+                label: Responsive Viewport
+                span: auto
+                type: switch
+                comment: 'Enable rendering of the viewport meta tag.'
+                tab: Seo Settings
+            rev_scale:
+                label: 'Initial Scale'
+                oc.commentPosition: ''
+                span: auto
+                placeholder: '1.0'
+                trigger:
+                    action: show
+                    field: responsive
+                    condition: checked
+                default: '1.0'
+                type: text
+                tab: Seo Settings
+            size:
+                label: 'Viewport Size'
+                oc.commentPosition: ''
+                options:
+                    width=device-width: 'Device Width'
+                    height=device-height: 'Device Height'
+                    custom: 'Custom Size'
+                span: auto
+                trigger:
+                    action: show
+                    field: responsive
+                    condition: checked
+                type: dropdown
+                tab: Seo Settings
+            width:
+                label: Width
+                oc.commentPosition: ''
+                span: auto
+                trigger:
+                    action: show
+                    field: size
+                    condition: 'value[custom]'
+                type: number
+                tab: Seo Settings
+            height:
+                label: Height
+                oc.commentPosition: ''
+                span: auto
+                trigger:
+                    action: show
+                    field: size
+                    condition: 'value[custom]'
+                type: number
+                tab: Seo Settings
+            
+            # --- Robots Txt Tab ---
+            robots_txt_content:
+                label: 'robots.txt'
+                oc.commentPosition: ''
+                size: large
+                language: plain_text
+                span: full
+                type: codeeditor
+                default: "User-agent: *\nDisallow: /\nHost: $domain\nSitemap: $domain/sitemap.xml"
+                tab: Robots Txt

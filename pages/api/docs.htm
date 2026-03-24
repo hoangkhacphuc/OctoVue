@@ -1,0 +1,17 @@
+title = "API Docs"
+url = "/api/v1/docs"
+layout = ""
+==
+<?php
+function onStart() {
+    header('Content-Type: application/json');
+}
+?>
+==
+{{ {
+    "docs": [
+        {"title": "Twig JSON API", "content": "Data is parsed entirely via Twig loops and returned as JSON."},
+        {"title": "Vue Router", "content": "SPA fetch() correctly matches the .htm page routes."},
+        {"title": "Decoupled", "content": "We are still decoupled, but relying wholly on standard htm page compilation!"}
+    ]
+}|json_encode|raw }}

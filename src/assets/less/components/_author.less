@@ -1,0 +1,41 @@
+// Author page
+&.author-page {
+    .author-details {
+        margin-top: 35px;
+        padding: 20px;
+        background-color: fade(@bg, 50%);
+        border-radius: 8px;
+        border: 1px solid @comment;
+    }
+    
+    .contact-row {
+        margin: 15px 0;
+        font-size: 1.1rem;
+        display: flex;
+        align-items: flex-start;
+    }
+    
+    .contact-label {
+        width: 120px;
+        color: @orange;
+        font-weight: bold;
+        flex-shrink: 0;
+    }
+    
+    .address-text {
+        flex: 1;
+        color: @fg;
+        line-height: 1.5;
+    }
+    
+    .social-link {
+        color: @cyan;
+        text-decoration: none;
+        transition: color 0.2s;
+        
+        &:hover {
+            color: @green;
+            text-decoration: underline;
+        }
+    }
+}
